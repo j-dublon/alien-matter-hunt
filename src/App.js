@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import AlienMap from "./Components/AlienMap";
+import AlienList from "./Components/AlienList";
 import axios from "axios";
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
 
   componentDidMount = () => {
     axios
-      .get("https://data.nasa.gov/resource/gh4g-9sfh.json?$limit=30")
+      .get("https://data.nasa.gov/resource/gh4g-9sfh.json?$limit=50")
       .then((response) => {
         this.setState((currentState) => {
           return {
@@ -36,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header className="header" />
         <form>
           <select
             id="regions"
@@ -52,6 +53,10 @@ class App extends Component {
           </select>
         </form>
         <AlienMap
+          selectedRegion={this.state.selectedRegion}
+          meteorites={this.state.meteoriteLandings}
+        />
+        <AlienList
           selectedRegion={this.state.selectedRegion}
           meteorites={this.state.meteoriteLandings}
         />

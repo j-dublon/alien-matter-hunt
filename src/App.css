@@ -1,13 +1,40 @@
 body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px 20px 400px;
+  grid-template-areas:
+    "top top"
+    "form form"
+    "map list";
   text-align: center;
+  font-family: "Bangers", cursive;
+}
+
+.header {
+  grid-area: "top";
+}
+
+h1 {
+  letter-spacing: 0.2em;
+}
+
+p {
+  letter-spacing: 0.1em;
 }
 
 .leaflet-container {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  width: 70%;
+  width: 60%;
   height: 500px;
+  top: 20px;
+  left: 20px;
+}
+
+#regions {
+  font-family: "Bangers", cursive;
+  letter-spacing: 0.1em;
+}
+
+.option {
+  font-family: "Bangers", cursive;
+  letter-spacing: 0.1em;
 }

@@ -18,7 +18,6 @@ function AlienMap({ selectedRegion, meteorites }) {
       zoom={regions[selectedRegion][2]}
     >
       {meteorites.map((meteorite) => {
-        console.log(meteorite);
         return (
           <Marker
             key={meteorite.id}
