@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
-function AlienMap({ selectedRegion, meteorites }) {
-  const regions = {
+class AlienMap extends Component {
+  state = { activeSite: {} };
+
+  regions = {
     Africa: [4.227269, 21.418349, 3],
     Asia: [49.787471, 91.654214, 2.5],
     Australasia: [-18.542117, 138.2646, 3],
@@ -11,26 +13,46 @@ function AlienMap({ selectedRegion, meteorites }) {
     SouthAmerica: [-19.369454, -58.006624, 2.5],
   };
 
-  return (
-    <Map
-      id="map"
-      center={[regions[selectedRegion][0], regions[selectedRegion][1]]}
-      zoom={regions[selectedRegion][2]}
-    >
-      {meteorites.map((meteorite) => {
-        return (
-          <Marker
-            key={meteorite.id}
-            position={[meteorite.reclat, meteorite.reclong]}
-          />
-        );
-      })}
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
-    </Map>
-  );
+  setActiveSite = (meteorite) => {
+    this.setState({ activeSite: meteorite });
+  };
+
+  render() {
+    const { selectedRegion, meteorites } = this.props;
+    const { activeSite } = this.state;
+    return (
+      <Map
+        id="map"
+        center={[
+          this.regions[selectedRegion][0],
+          this.regions[selectedRegion][1],
+        ]}
+        zoom={this.regions[selectedRegion][2]}
+      >
+        {meteorites.map((meteorite) => {
+          return (
+            <div key={meteorite.id}>
+              <Marker
+                position={[meteorite.reclat, meteorite.reclong]}
+                onClick={() => {
+                  this.setActiveSite(meteorite);
+                }}
+              />
+              {activeSite.name === meteorite.name && (
+                <Popup position={[meteorite.reclat, meteorite.reclong]}>
+                  <h2>{meteorite.name}</h2>
+                </Popup>
+              )}
+            </div>
+          );
+        })}
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+      </Map>
+    );
+  }
 }
 
 export default AlienMap;

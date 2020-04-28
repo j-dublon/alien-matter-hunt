@@ -40,7 +40,7 @@ class App extends Component {
         <Header className="header" />
         <form>
           <select
-            id="regions"
+            className="regions"
             name="regions"
             onChange={this.handleRegionSelect}
           >
@@ -52,14 +52,16 @@ class App extends Component {
             <option value="SouthAmerica">South America</option>
           </select>
         </form>
-        <AlienMap
-          selectedRegion={this.state.selectedRegion}
-          meteorites={this.state.meteoriteLandings}
-        />
-        <AlienList
-          selectedRegion={this.state.selectedRegion}
-          meteorites={this.state.meteoriteLandings}
-        />
+        <main className="main">
+          <AlienMap
+            selectedRegion={this.state.selectedRegion}
+            meteorites={this.state.meteoriteLandings}
+          />
+          <AlienList
+            selectedRegion={this.state.selectedRegion}
+            meteorites={this.state.meteoriteLandings}
+          />
+        </main>
       </div>
     );
   }

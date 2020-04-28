@@ -8,7 +8,7 @@ function AlienList({ selectedRegion, meteorites }) {
     return false;
   });
   return (
-    <ul>
+    <ul className="list">
       {selectedMeteorites.map((meteorite) => {
         return <li key={meteorite.id}>{meteorite.name}</li>;
       })}

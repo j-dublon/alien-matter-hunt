@@ -1,17 +1,8 @@
 body {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 100px 20px 400px;
-  grid-template-areas:
-    "top top"
-    "form form"
-    "map list";
+  display: flex;
+  flex-direction: column;
   text-align: center;
   font-family: "Bangers", cursive;
-}
-
-.header {
-  grid-area: "top";
 }
 
 h1 {
@@ -23,18 +14,30 @@ p {
 }
 
 .leaflet-container {
-  width: 60%;
+  width: 75%;
   height: 500px;
   top: 20px;
   left: 20px;
 }
 
-#regions {
+.regions {
   font-family: "Bangers", cursive;
   letter-spacing: 0.1em;
+  list-style-type: none;
 }
 
-.option {
-  font-family: "Bangers", cursive;
-  letter-spacing: 0.1em;
+.main {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list {
+  align-self: center;
+  list-style-type: none;
+  padding-left: 3em;
+  text-align: start;
+}
+
+.list li {
+  padding: 0.7em;
 }
