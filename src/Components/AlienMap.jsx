@@ -30,6 +30,7 @@ class AlienMap extends Component {
         zoom={this.regions[selectedRegion][2]}
       >
         {meteorites.map((meteorite) => {
+          const popupLat = (Number(meteorite.reclat) + 4).toString();
           return (
             <div key={meteorite.id}>
               <Marker
@@ -39,7 +40,7 @@ class AlienMap extends Component {
                 }}
               />
               {activeSite.name === meteorite.name && (
-                <Popup position={[meteorite.reclat, meteorite.reclong]}>
+                <Popup position={[popupLat, meteorite.reclong]}>
                   <h2>{meteorite.name}</h2>
                 </Popup>
               )}
