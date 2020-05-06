@@ -34,6 +34,16 @@ p {
   justify-content: flex-start;
 }
 
+.leaflet-popup-content {
+  font-family: "Bangers", cursive;
+  letter-spacing: 0.15em;
+}
+
+.leaflet-popup-content h3,
+h4 {
+  text-align: center;
+}
+
 .list {
   align-self: center;
   list-style-type: none;

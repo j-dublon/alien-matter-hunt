@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import AlienMap from "./Components/AlienMap";
-import AlienList from "./Components/AlienList";
 import axios from "axios";
 
 class App extends Component {
@@ -52,12 +51,8 @@ class App extends Component {
             <option value="SouthAmerica">South America</option>
           </select>
         </form>
-        <main className="main">
+        <main>
           <AlienMap
-            selectedRegion={this.state.selectedRegion}
-            meteorites={this.state.meteoriteLandings}
-          />
-          <AlienList
             selectedRegion={this.state.selectedRegion}
             meteorites={this.state.meteoriteLandings}
           />

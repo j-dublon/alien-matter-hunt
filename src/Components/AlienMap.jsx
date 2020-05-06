@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import AlienList from "./AlienList";
 
 class AlienMap extends Component {
   state = { activeSite: {} };
@@ -21,37 +22,46 @@ class AlienMap extends Component {
     const { selectedRegion, meteorites } = this.props;
     const { activeSite } = this.state;
     return (
-      <Map
-        id="map"
-        center={[
-          this.regions[selectedRegion][0],
-          this.regions[selectedRegion][1],
-        ]}
-        zoom={this.regions[selectedRegion][2]}
-      >
-        {meteorites.map((meteorite) => {
-          const popupLat = (Number(meteorite.reclat) + 4).toString();
-          return (
-            <div key={meteorite.id}>
-              <Marker
-                position={[meteorite.reclat, meteorite.reclong]}
-                onClick={() => {
-                  this.setActiveSite(meteorite);
-                }}
-              />
-              {activeSite.name === meteorite.name && (
-                <Popup position={[popupLat, meteorite.reclong]}>
-                  <h2>{meteorite.name}</h2>
-                </Popup>
-              )}
-            </div>
-          );
-        })}
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      <main className="main">
+        <Map
+          id="map"
+          center={[
+            this.regions[selectedRegion][0],
+            this.regions[selectedRegion][1],
+          ]}
+          zoom={this.regions[selectedRegion][2]}
+        >
+          {meteorites.map((meteorite) => {
+            const popupLat = (Number(meteorite.reclat) + 4).toString();
+            return (
+              <div key={meteorite.id}>
+                <Marker
+                  position={[meteorite.reclat, meteorite.reclong]}
+                  className="marker"
+                  onClick={() => {
+                    this.setActiveSite(meteorite);
+                  }}
+                />
+                {activeSite.name === meteorite.name && (
+                  <Popup position={[popupLat, meteorite.reclong]}>
+                    <h2>{meteorite.name}</h2>
+                    {meteorite.year && <h3>{meteorite.year.slice(0, 4)}</h3>}
+                  </Popup>
+                )}
+              </div>
+            );
+          })}
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+        </Map>
+        <AlienList
+          selectedRegion={selectedRegion}
+          meteorites={meteorites}
+          setActiveSite={this.setActiveSite}
         />
-      </Map>
+      </main>
     );
   }
 }
