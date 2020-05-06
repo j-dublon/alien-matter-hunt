@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import AlienMap from "./Components/AlienMap";
 import axios from "axios";
+import RegionSelect from "./Components/RegionSelect";
 
 class App extends Component {
   state = {
@@ -37,26 +38,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header className="header" />
-        <form>
-          <select
-            className="regions"
-            name="regions"
-            onChange={this.handleRegionSelect}
-          >
-            <option value="Africa">Africa</option>
-            <option value="Asia">Asia</option>
-            <option value="Australasia">Australasia</option>
-            <option value="Europe">Europe</option>
-            <option value="NorthAmerica">North America</option>
-            <option value="SouthAmerica">South America</option>
-          </select>
-        </form>
-        <main>
-          <AlienMap
-            selectedRegion={this.state.selectedRegion}
-            meteorites={this.state.meteoriteLandings}
-          />
-        </main>
+        <RegionSelect handleRegionSelect={this.handleRegionSelect} />
+        <AlienMap
+          selectedRegion={this.state.selectedRegion}
+          meteorites={this.state.meteoriteLandings}
+        />
       </div>
     );
   }
