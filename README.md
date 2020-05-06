@@ -4,8 +4,6 @@ A simple, one page React app that serves data from [NASA's meteorite landings AP
 
 Users can pick a region from a drop down menu and see a selection of meteorite landings in that region. Clicking on the markers displays the name of the site and the year of the strike. Site names are also displayed in a list - when list items are clicked, the meteorite popup is triggered.
 
-The app is responsive and may be viewed on desktop or mobile.
-
 ## Running the app locally
 
 ### Prerequisites:
